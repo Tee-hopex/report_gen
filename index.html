@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate PDF Report</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Generate PDF Report</h1>
+        <form id="reportForm">
+            <label for="data">Text Data:</label>
+            <input type="text" id="data" name="data" placeholder="Enter text data here">
+            
+            <label for="image">Upload Image:</label>
+            <input type="file" id="image" name="image">
+            
+            <button type="submit">Generate Report</button>
+        </form>
+
+        <div class="message" id="message"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+ 

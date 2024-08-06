@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Disease Case Report Portal</title>
+    <link rel="stylesheet" href="DOHS frontend\disease-cases-zipped\disease-cases\src\output.css" />
+  </head>
+  <body class="bg-white">
+    <h1 class="text-center text-2xl font-bold mt-4">
+      Disease Case Report Portal
+    </h1>
+    <form action="/disease/generate-report" method="POST" class="max-w-4xl mx-auto p-8">
+      <!-- Reporting Authority -->
+      <fieldset class="mb-6 p-4">
+        <legend
+          class="text-white bg-custom-teal p-2 w-full text-left pl-2.5 rounded-md"
+        >
+          Reporting Authority
+        </legend>
+        <label class="inline-flex items-center mt-4 w-full">
+          <span class="mr-2 font-medium"
+            >Name of Health Officer Responsible for case</span
+          >
+          <input
+            type="text"
+            name="reportingAuthority.surname"
+            class="flex-grow p-2 border border-gray-300 rounded-md mr-2"
+            placeholder="Surname"
+          />
+          <input
+            type="text"
+            name="reportingAuthority.otherNames"
+            class="flex-grow p-2 border border-gray-300 rounded-md ml-2"
+            placeholder="Other Names"
+          />
+        </label>
+      </fieldset>
+      <!-- Notifier Identification -->
+      <fieldset class="mb-6 p-4">
+        <legend
+          class="text-white bg-custom-teal p-2 w-full text-left pl-2.5 rounded-md"
+        >
+          Notifier Identification
+        </legend>
+        <div class="flex items-center mb-6">
+          <label class="mr-4">
+            <input
+              type="radio"
+              name="notifier.type"
+              value="General Practitioner"
+              class="mr-2"
+            />General Practitioner
+          </label>
+          <label class="mr-4">
+            <input
+              type="radio"
+              name="notifier.type"
+              value="Hospital-based Practitioner"
+              class="mr-2"
+              checked
+            />Hospital-based Practitioner
+          </label>
+          <label class="mr-4">
+            <input
+              type="radio"
+              name="notifier.type"
+              value="Laboratory"
+              class="mr-2"
+            />Laboratory
+          </label>
+        </div>
+        <hr />
+        <label class="flex items-center mb-4 w-full mt-4">
+          <span class="font-medium w-1/3 mr-4 flex-shrink-0"
+            >Name of Reporting Source</span
+          >
+          <input
+            type="text"
+            name="notifier.reportingSource"
+            class="flex-grow p-2 border border-gray-300 rounded-md"
+          />
+        </label>
+        <label class="flex items-center mb-4 w-full mt-4">
+          <span class="font-medium w-1/3 mr-4 flex-shrink-0">Organization</span>
+          <input
+            type="text"
+            name="notifier.organization"
+            class="flex-grow p-2 border border-gray-300 rounded-md"
+          />
+        </label>
+        <label class="flex items-center mb-4 w-full mt-4">
+          <span class="font-medium w-1/3 mr-4 flex-shrink-0"
+            >Date Reported</span
+          >
+          <input
+            type="date"
+            name="notifier.dateReported"
+            class="w-2/3 p-2 border border-gray-300 rounded-md"
+          />
+        </label>
+        <label class="flex items-center mb-4 w-full mt-4">
+          <span class="font-medium w-1/3 mr-4 flex-shrink-0">Usual GP</span>
+          <input
+            type="text"
+            name="notifier.usualGP"
+            class="flex-grow p-2 border border-gray-300 rounded-md"
+          />
+        </label>
+        <label class="flex items-center mb-4 w-full mt-4">
+          <span class="font-medium w-1/3 mr-4 flex-shrink-0">GP Practice</span>
+          <input
+            type="text"
+            name="notifier.gpPractice"
+            class="flex-grow p-2 border border-gray-300 rounded-md"
+          />
+        </label>
+        <label class="flex flex-col mb-4 w-full mt-4">
+          <span class="font-medium mb-2 flex-shrink-0 mr-4"
+            >GP/Practice address</span
+          >
+          <div class="flex flex-wrap">
+            <!-- No. and Street -->
+            <div class="flex w-full mb-6 items-center">
+              <input
+                type="text"
+                name="notifier.gpPracticeAddress.no"
+                class="p-2 border border-gray-300 rounded-md mr-4 w-1/4"
+                placeholder="No."
+              />
+              <input
+                type="text"
+                name="notifier.gpPracticeAddress.street"
+                class="p-2 border border-gray-300 rounded-md flex-grow"
+                placeholder="Street"
+              />
+            </div>
+
+            <!-- LGA and Town/City -->
+            <div class="flex w-full mb-6 items-center">
+              <input
+                type="text"
+                name="notifier.gpPracticeAddress.lga"
+                class="p-2 border border-gray-300 rounded-md mr-4 flex-grow"
+                placeholder="LGA"
+              />
+              <input
+                type="text"
+                name="notifier.gpPracticeAddress.townCity"
+                class="p-2 border border-gray-300 rounded-md flex-grow"
+                placeholder="Town/City"
+              />
+            </div>
+
+            <!-- Post Code and Geo Code -->
+            <div class="flex w-full mb-6 items-center">
+              <input
+                type="text"
+                name="notifier.gpPracticeAddress.postCode"
+                class="p-2 border border-gray-300 rounded-md mr-4 flex-grow"
+                placeholder="Post Code"
+              />
+              <input
+                type="text"
+                name="notifier.gpPracticeAddress.geoCode"
+                class="p-2 border border-gray-300 rounded-md flex-grow"
+                placeholder="Geo Code"
+              />
+            </div>
+          </div>
+        </label>
+      </fieldset>
+      <!-- Case Identification -->
+      <fieldset class="mb-6 p-4">
+        <legend
+          class="text-white bg-custom-teal p-2 w-full text-left pl-2.5 rounded-md"
+        >
+          Case Identification
+        </legend>
+        <label class="inline-flex items-center mt-4 w-full mb-6">
+          <span class="mr-4 font-medium">Name of Case</span>
+          <input
+            type="text"
+            name="caseIdentification.surname"
+            class="flex-grow p-2 border border-gray-300 rounded-md mr-2"
+            placeholder="Surname"
+          />
+          <input
+            type="text"
+            name="caseIdentification.otherNames"
+            class="flex-grow p-2 border border-gray-300 rounded-md ml-2"
+            placeholder="Other Names"
+          />
+        </label>
+        <label class="flex items-center mb-6">
+          <span class="mr-4 font-medium w-1/3">Email</span>
+          <input
+            type="email"
+            name="caseIdentification.email"
+            class="flex-grow p-2 border border-gray-300 rounded-md"
+          />
+        </label>
+        <label class="flex flex-col mb-4 w-full mt-4">
+          <span class="font-medium mb-2 flex-shrink-0 mr-4"
+            >Current Address</span
+          >
+          <div class="flex flex-wrap">
+            <!-- No. and Street -->
+            <div class="flex w-full mb-6 items-center">
+              <input
+                type="text"
+                name="caseIdentification.currentAddress.no"
+                class="p-2 border border-gray-300 rounded-md mr-4 w-1/6"
+                placeholder="No."
+              />
+              <input
+                type="text"
+                name="caseIdentification.currentAddress.street"
+                class="p-2 border border-gray-300 rounded-md flex-grow"
+                placeholder="Street"
+              />
+            </div>
+
+            <!-- Suburb and Town/City -->
+            <div class="flex w-full mb-6 items-center">
+              <input
+                type="text"
+                name="caseIdentification.currentAddress.suburb"
+                class="p-2 border border-gray-300 rounded-md mr-4 flex-grow"
+                placeholder="Suburb"
+              />
+              <input
+                type="text"
+                name="caseIdentification.currentAddress.townCity"
+                class="p-2 border border-gray-300 rounded-md mr-4 flex-grow"
+                placeholder="Town/City"
+              />
+            </div>
+
+            <!-- Post Code and Geo Code -->
+            <div class="flex w-full mb-6 items-center">
+              <input
+                type="text"
+                name="caseIdentification.currentAddress.postCode"
+                class="p-2 border border-gray-300 rounded-md mr-4 flex-grow"
+                placeholder="Post Code"
+              />
+              <input
+                type="text"
+                name="caseIdentification.currentAddress.geoCode"
+                class="p-2 border border-gray-300 rounded-md flex-grow"
+                placeholder="Geo Code"
+              />
+            </div>
+          </div>
+        </label>
+
+        <label class="flex flex-col">
+          <span class="mr-4 font-medium">Phone</span>
+          <div class="flex w-full mb-6 items-center">
+            <input
+              type="text"
+              name="caseIdentification.phone.home"
+              class="flex-grow p-2 border border-gray-300 rounded-md mr-4"
+              placeholder="Home"
+            />
+            <input
+              type="text"
+              name="caseIdentification.phone.work"
+              class="flex-grow p-2 border border-gray-300 rounded-md ml-2"
+              placeholder="Work"
+            />
+          </div>
+        </label>
+      </fieldset>
+      <!-- Case Demography -->
+      <fieldset class="mb-6 p-4">
+        <legend
+          class="text-white bg-custom-teal p-2 w-full text-left pl-2.5 rounded-md"
+        >
+          Case Demography
+        </legend>
+        <label class="block mb-4">
+          <span class="mr-4 font-medium">Date of Birth</span>
+          <input
+            type="date"
+            name="caseDemography.dateOfBirth"
+            class="w-2/3 p-2 border border-gray-300 rounded-md"
+            placeholder="DD/MM/YYYY"
+          />
+        </label>
+        <div class="flex items-center mb-6">
+          <label class="mr-4">
+            <input
+              type="radio"
+              name="caseDemography.sex"
+              value="Male"
+              class="mr-2"
+            />Male
+          </label>
+          <label class="mr-4">
+            <input
+              type="radio"
+              name="caseDemography.sex"
+              value="Female"
+              class="mr-2"
+              checked
+            />Female
+          </label>
+        </div>
+        <hr class="mb-6" />
+        <label class="block mb-6">
+          <span class="mr-4 font-medium">Occupation</span>
+          <input
+            type="text"
+            name="caseDemography.occupation"
+            class="w-1/2 p-2 border border-gray-300 rounded-md"
+          />
+        </label>
+        <label class="flex items-center mb-6">
+          <span class="mr-4 font-medium w-1/3">Name of Workspace</span>
+          <input
+            type="text"
+            name="caseDemography.workspace"
+            class="flex-grow p-2 border border-gray-300 rounded-md"
+          />
+        </label>
+        <label class="flex flex-col mb-4 w-full mt-4">
+          <span class="font-medium mb-2 flex-shrink-0 mr-4">Location</span>
+          <div class="flex flex-wrap">
+            <!-- No. and Street -->
+            <div class="flex w-full mb-6 items-center">
+              <input
+                type="text"
+                name="caseDemography.currentAddress.no"
+                class="p-2 border border-gray-300 rounded-md mr-4 w-1/6"
+                placeholder="No."
+              />
+              <input
+                type="text"
+                name="caseDemography.currentAddress.street"
+                class="p-2 border border-gray-300 rounded-md flex-grow"
+                placeholder="Street"
+              />
+            </div>
+
+            <!-- Suburb and Town/City -->
+            <div class="flex w-full mb-6 items-center">
+              <input
+                type="text"
+                name="caseDemography.currentAddress.suburb"
+                class="p-2 border border-gray-300 rounded-md mr-4 flex-grow"
+                placeholder="Suburb"
+              />
+              <input
+                type="text"
+                name="caseDemography.currentAddress.townCity"
+                class="p-2 border border-gray-300 rounded-md mr-4 flex-grow"
+                placeholder="Town/City"
+              />
+            </div>
+
+            <!-- Post Code and Geo Code -->
+            <div class="flex w-full mb-6 items-center">
+              <input
+                type="text"
+                name="caseDemography.currentAddress.postCode"
+                class="p-2 border border-gray-300 rounded-md mr-4 flex-grow"
+                placeholder="Post Code"
+              />
+              <input
+                type="text"
+                name="caseDemography.currentAddress.geoCode"
+                class="p-2 border border-gray-300 rounded-md flex-grow"
+                placeholder="Geo Code"
+              />
+            </div>
+          </div>
+        </label>
+        <label class="flex flex-col">
+          <span class="mr-4 font-medium">Phone</span>
+          <div class="flex w-full mb-6 items-center">
+            <input
+              type="text"
+              name="caseDemography.phone.home"
+              class="flex-grow p-2 border border-gray-300 rounded-md mr-4"
+              placeholder="Home"
+            />
+            <input
+              type="text"
+              name="caseDemography.phone.work"
+              class="flex-grow p-2 border border-gray-300 rounded-md ml-2"
+              placeholder="Work"
+            />
+          </div>
+        </label>
+      </fieldset>
+      <!-- Ethnic Groups -->
+      <fieldset class="mb-6 p-4">
+        <legend
+          class="text-white bg-custom-teal p-2 w-full text-left pl-2.5 rounded-md"
+        >
+          Ethnic group case belongs to
+        </legend>
+        <div class="flex items-center mb-4">
+          <label class="mr-4">
+            <input
+              type="radio"
+              name="ethnic.type"
+              value="Yoruba"
+              class="mr-2"
+            />Yoruba
+          </label>
+          <label class="mr-4">
+            <input
+              type="radio"
+              name="ethnic.type"
+              value="Igbo"
+              class="mr-2"
+              checked
+            />Igbo
+          </label>
+          <label class="mr-4">
+            <input
+              type="radio"
+              name="ethnic.type"
+              value="Hausa"
+              class="mr-2"
+            />Hausa
+          </label>
+          <label class="mr-4">
+            <input
+              type="radio"
+              name="ethnic.type"
+              value="Isoko"
+              class="mr-2"
+            />Isoko
+          </label>
+          <label class="mr-4">
+            <input
+              type="radio"
+              name="ethnic.type"
+              value="Ijaw"
+              class="mr-2"
+            />Ijaw
+          </label>
+          <label class="mr-4">
+            <input
+              type="radio"
+              name="ethnic.type"
+              value="Bini"
+              class="mr-2"
+            />Bini
+          </label>
+          <label class="mr-4">
+            <input
+              type="radio"
+              name="ethnic.type"
+              value="Ibibio"
+              class="mr-2"
+            />Ibibio
+          </label>
+          <label class="mr-4">
+            <input
+              type="radio"
+              name="ethnic.type"
+              value="Others"
+              class="mr-2"
+            />Others (Such as Adara, Urhobo)
+          </label>
+        </div>
+      </fieldset>
+      <button
+        type="submit"
+        class="text-white bg-custom-teal p-2 w-full text-center pl-2.5 rounded-md font-semibold"
+      >
+        Generate Report
+      </button>
+    </form>
+  </body>
+</html>
